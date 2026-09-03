@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Basalt Coffee Roasters | Melbourne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAA78/93AAAACXBIWXMAAA7DAAAOwwHHbSshAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAI0lEQVQoz2NkYGDgZUAAMqAGYpgBgyCGQYzDGIYxDGEYhjBMBwA/jQAO0jC42AAAAABJRU5ErkJggg==">
+    
+    <style>
+        :root {
+            --espresso: #3b2418;
+            --espresso-dark: #24160f;
+            --accent: #d97b3f;
+            --accent-hover: #c0672f;
+            --cream: #fbf9f5;
+            --cream-card: #f4efe6;
+            --text-dark: #2c221e;
+            --text-muted: #73645c;
+            --border: #e6dfd3;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6, .serif-font {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Premium Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--cream);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-icon {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--cream-card);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--espresso);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--espresso);
+            color: var(--cream);
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: rgba(251, 249, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--espresso);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: var(--espresso);
+            color: var(--white);
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .cart-btn:hover {
+            background: var(--accent);
+        }
+
+        .cart-count {
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            padding: 0.15rem 0.6rem;
+            font-size: 0.8rem;
+        }
+
+        .cart-btn:hover .cart-count {
+            background: var(--espresso);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 5rem;
+            background: radial-gradient(circle at 80% 20%, rgba(217, 123, 63, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.05;
+            color: var(--espresso);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 580px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1.1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--espresso);
+            border: 2.5px solid var(--espresso);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--espresso);
+            color: var(--white);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 560px;
+            border-radius: 30px;
+            object-fit: cover;
+            box-shadow: 0 30px 60px rgba(59, 36, 24, 0.15);
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -25px;
+            left: -35px;
+            background: var(--espresso);
+            color: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .hero-badge h4 {
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .hero-badge p {
+            font-size: 0.9rem;
+            color: var(--border);
+            margin-bottom: 0;
+        }
+
+        /* Marquee */
+        .marquee-section {
+            background-color: var(--espresso);
+            color: var(--cream);
+            padding: 1.5rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 5rem 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-right: 4rem;
+        }
+
+        .marquee-item span {
+            color: var(--accent);
+            margin-right: 4rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--espresso);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(217, 123, 63, 0.12);
+            color: var(--accent);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Bestsellers Grid */
+        .bestsellers {
+            padding: 5rem 0;
+        }
+
+        .roast-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .roast-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .roast-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(59, 36, 24, 0.1);
+        }
+
+        .roast-img-container {
+            position: relative;
+            height: 260px;
+            background: var(--cream-card);
+            overflow: hidden;
+        }
+
+        .roast-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .roast-card:hover .roast-img-container img {
+            transform: scale(1.07);
+        }
+
+        .roast-level-tag {
+            position: absolute;
+            top: 1.2rem;
+            left: 1.2rem;
+            background: var(--espresso);
+            color: var(--cream);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .roast-info {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .roast-info h3 {
+            font-size: 1.4rem;
+            color: var(--espresso);
+            margin-bottom: 0.5rem;
+        }
+
+        .roast-origin {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .tasting-notes {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .roast-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1.2rem;
+        }
+
+        .roast-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--espresso);
+        }
+
+        .add-cart-mini {
+            background: var(--espresso);
+            color: var(--white);
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .add-cart-mini:hover {
+            background: var(--accent);
+        }
+
+        /* Spotlight Roast Section */
+        .spotlight {
+            padding: 6rem 0;
+            background-color: var(--cream-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 5rem 0;
+        }
+
+        .spotlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .spotlight-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .spotlight-main-img {
+            width: 100%;
+            height: 460px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .spotlight-sub-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .spotlight-sub-img {
+            width: 100%;
+            height: 220px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .spotlight-content h2 {
+            font-size: 3.5rem;
+            color: var(--espresso);
+            margin-bottom: 1.2rem;
+        }
+
+        .spotlight-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .spec-item h5 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-item p {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--espresso);
+        }
+
+        .grind-selector {
+            margin-bottom: 2.5rem;
+        }
+
+        .grind-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--espresso);
+        }
+
+        .grind-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .grind-opt {
+            border: 2px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .grind-opt.active, .grind-opt:hover {
+            border-color: var(--accent);
+            background: rgba(217, 123, 63, 0.05);
+            color: var(--accent);
+        }
+
+        /* Origin Regions */
+        .origins {
+            padding: 5rem 0;
+        }
+
+        .origin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .origin-card {
+            position: relative;
+            height: 420px;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            color: var(--white);
+        }
+
+        .origin-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(36,22,15,0.92) 0%, rgba(36,22,15,0.2) 60%, transparent 100%);
+            z-index: 1;
+        }
+
+        .origin-card img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .origin-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .origin-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .origin-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .origin-content p {
+            font-size: 0.95rem;
+            color: var(--border);
+        }
+
+        /* Subscription Plans */
+        .subscriptions {
+            padding: 6rem 0;
+            background-color: var(--espresso);
+            color: var(--cream);
+            margin: 5rem 0;
+        }
+
+        .subscriptions .section-header h2 {
+            color: var(--cream);
+        }
+
+        .subscriptions .section-header p {
+            color: var(--border);
+        }
+
+        .sub-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .sub-card {
+            background: var(--espresso-dark);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 3.5rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .sub-card.popular {
+            border-color: var(--accent);
+            transform: scale(1.04);
+            background: #2b1a12;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.4rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .sub-card h3 {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .sub-desc {
+            font-size: 1rem;
+            color: var(--border);
+            margin-bottom: 2.5rem;
+        }
+
+        .sub-price {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+        }
+
+        .sub-price span {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--border);
+        }
+
+        .sub-features {
+            margin-bottom: 3rem;
+            flex-grow: 1;
+        }
+
+        .sub-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sub-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Brew Guides */
+        .brew-guides {
+            padding: 5rem 0;
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--espresso);
+            color: var(--white);
+            border-color: var(--espresso);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--white);
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            padding: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .tab-content.active {
+            display: grid;
+        }
+
+        .brew-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .brew-step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: rgba(217, 123, 63, 0.15);
+            color: var(--accent);
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .step-text h4 {
+            color: var(--espresso);
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .brew-img {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        /* Our Story */
+        .story {
+            padding: 6rem 0;
+            background-color: var(--cream-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 5rem 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .story-img-wrapper {
+            position: relative;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 540px;
+            border-radius: 30px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(59,36,24,0.12);
+        }
+
+        .story-content h2 {
+            font-size: 3.5rem;
+            color: var(--espresso);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            font-size: 1.15rem;
+        }
+
+        .counters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border);
+            padding-top: 2.5rem;
+        }
+
+        .counter-item h3 {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .counter-item p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Reviews */
+        .reviews {
+            padding: 5rem 0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .reviewer-info h4 {
+            color: var(--espresso);
+            font-size: 1.2rem;
+        }
+
+        .reviewer-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Gift Sets */
+        .gift-sets {
+            padding: 6rem 0;
+            background-color: var(--espresso);
+            color: var(--cream);
+            margin: 5rem 0;
+        }
+
+        .gift-sets .section-header h2 { color: var(--cream); }
+        .gift-sets .section-header p { color: var(--border); }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .gift-card {
+            background: var(--espresso-dark);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gift-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .gift-info {
+            padding: 2.5rem;
+        }
+
+        .gift-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .gift-info p {
+            color: var(--border);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gift-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 5rem 0;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 4rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.8rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--espresso);
+            text-align: left;
+        }
+
+        .faq-question span {
+            font-size: 1.6rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 2.5rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding-bottom: 2rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 6rem 0;
+            background: radial-gradient(circle at center, rgba(217, 123, 63, 0.12) 0%, transparent 70%);
+            text-align: center;
+        }
+
+        .newsletter-box {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 4.5rem 3.5rem;
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px rgba(59, 36, 24, 0.06);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 1.1rem 1.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            outline: none;
+            font-size: 1.05rem;
+            background: var(--cream);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--espresso-dark);
+            color: var(--cream);
+            padding: 6rem 0 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            color: var(--accent);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-col ul a {
+            color: var(--border);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--border);
+        }
+
+        /* Slide-in Cart Drawer */
+        .cart-drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(36,22,15,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: 0; width: 450px; height: 100%;
+            background: var(--white);
+            z-index: 1001;
+            box-shadow: -15px 0 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            padding: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            color: var(--espresso);
+            font-size: 1.7rem;
+        }
+
+        .close-drawer {
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-drawer:hover {
+            color: var(--espresso);
+        }
+
+        .drawer-items {
+            padding: 2.5rem;
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .cart-item-row {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.2rem;
+        }
+
+        .cart-item-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 14px;
+            object-fit: cover;
+            background: var(--cream-card);
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-details h4 {
+            font-size: 1.1rem;
+            color: var(--espresso);
+        }
+
+        .cart-item-details p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .cart-item-price {
+            font-weight: 700;
+            color: var(--espresso);
+            font-size: 1.1rem;
+        }
+
+        .drawer-footer {
+            padding: 2.5rem;
+            border-top: 1px solid var(--border);
+            background: var(--cream);
+        }
+
+        .drawer-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--espresso);
+            margin-bottom: 1.8rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--accent);
+            color: var(--white);
+            padding: 1.1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-align: center;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Premium Newsletter Popup Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(36, 22, 15, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--espresso);
+        }
+
+        .modal-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(217, 123, 63, 0.15);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .modal-card h3 {
+            font-size: 2.2rem;
+            color: var(--espresso);
+            margin-bottom: 0.8rem;
+        }
+
+        .modal-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 2.2rem;
+        }
+
+        /* Responsive */
+        @media(max-width: 1024px) {
+            .roast-grid, .origin-grid { grid-template-columns: repeat(2, 1fr); }
+            .sub-grid, .gift-grid, .reviews-grid, .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-grid, .spotlight-grid, .story-grid, .tab-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .nav-links { display: none; }
+        }
+
+        @media(max-width: 768px) {
+            .container { padding: 0 1.2rem; }
+            .roast-grid, .origin-grid, .sub-grid, .gift-grid, .reviews-grid, .footer-grid, .counters-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.6rem; }
+            .hero-content p { font-size: 1.05rem; }
+            .section-header h2 { font-size: 2.5rem; }
+            .cart-drawer { width: 100%; }
+            .newsletter-form { flex-direction: column; }
+            .hero-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="loader-icon"></div>
+        <div class="loader-text">Basalt Coffee Roasters</div>
+    </div>
+
+    <div class="top-bar">
+        Complimentary express shipping across Australia on all orders over $65 ✦ Use code <span>MELBOURNE10</span> for 10% off your first subscription order.
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">BASALT<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#origins">Origins</a></li>
+                <li><a href="#guides">Brew Guides</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="cart-btn" id="openCartBtn">
+                    Cart <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="badge-tag">Melbourne Micro-Roastery Est. 2016</span>
+                <h1>Crafted by Fire, <span>Brewed with Precision.</span></h1>
+                <p>We source exceptional single-origin micro-lots from regenerative farms globally and roast them in small batches right here in Melbourne.</p>
+                <div class="hero-btns">
+                    <a href="#shop" class="btn-primary">Shop Fresh Roasts</a>
+                    <a href="#guides" class="btn-secondary">Explore Brew Guides</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=800&auto=format&fit=crop" alt="Premium Coffee Bag" class="hero-image">
+                <div class="hero-badge">
+                    <div>
+                        <h4>94+</h4>
+                        <p>SCA Cupping Score Lots</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <div class="marquee-item">Single-Origin <span>✦</span></div>
+            <div class="marquee-item">Small-Batch Roasted <span>✦</span></div>
+            <div class="marquee-item">Direct Trade Partnerships <span>✦</span></div>
+            <div class="marquee-item">Freshly Roasted Weekly <span>✦</span></div>
+            <div class="marquee-item">Single-Origin <span>✦</span></div>
+            <div class="marquee-item">Small-Batch Roasted <span>✦</span></div>
+            <div class="marquee-item">Direct Trade Partnerships <span>✦</span></div>
+            <div class="marquee-item">Freshly Roasted Weekly <span>✦</span></div>
+        </div>
+    </div>
+
+    <section class="bestsellers container" id="shop">
+        <div class="section-header">
+            <span class="badge-tag">Our Collection</span>
+            <h2>Current Seasonal Roasts</h2>
+            <p>Meticulously profiled single-origins highlighting the unique terroir of global high-altitude micro-regions.</p>
+        </div>
+
+        <div class="roast-grid">
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Light Roast</span>
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500&auto=format&fit=crop" alt="Ethiopian Gedeo">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Ethiopia ✦ Washed</span>
+                    <h3>Gedeo Zone Lot</h3>
+                    <p class="tasting-notes">Jasmine, Bergamot, Meyer Lemon, Peach Tea</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$24.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Ethiopian Gedeo', 24.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Medium Roast</span>
+                    <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=500&auto=format&fit=crop" alt="Colombian Paraiso">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Colombia ✦ Honey</span>
+                    <h3>Finca El Paraiso</h3>
+                    <p class="tasting-notes">Red Apple, Caramel Fudge, Milk Chocolate</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$22.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Colombian Paraiso', 22.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Dark Roast</span>
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=500&auto=format&fit=crop" alt="Sumatra Kerinci">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Indonesia ✦ Wet-Hulled</span>
+                    <h3>Kerinci Highlands</h3>
+                    <p class="tasting-notes">Dark Cacao, Cedar, Black Cherry, Tobacco</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$23.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Sumatra Kerinci', 23.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Light Roast</span>
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500&auto=format&fit=crop" alt="Kenya Nyeri">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Kenya ✦ Double Washed</span>
+                    <h3>Nyeri Hill Estate</h3>
+                    <p class="tasting-notes">Blackcurrant, Grapefruit, Brown Sugar</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$26.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Kenya Nyeri', 26.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Medium Roast</span>
+                    <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=500&auto=format&fit=crop" alt="Guatemala Huehue">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Guatemala ✦ Washed</span>
+                    <h3>Huehuetenango Lot</h3>
+                    <p class="tasting-notes">Toasted Almond, Orange Zest, Milk Chocolate</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$23.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Guatemala Huehue', 23.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Light Roast</span>
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500&auto=format&fit=crop" alt="Costa Rica Tarrazu">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Costa Rica ✦ White Honey</span>
+                    <h3>Tarrazu Micro-Lot</h3>
+                    <p class="tasting-notes">Honeycrisp Apple, Vanilla Bean, Nougat</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$25.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Costa Rica Tarrazu', 25.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Medium Roast</span>
+                    <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=500&auto=format&fit=crop" alt="Rwanda Huye">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Rwanda ✦ Bourbon</span>
+                    <h3>Huye Mountain</h3>
+                    <p class="tasting-notes">Blood Orange, Plum, Cane Sugar</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$24.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Rwanda Huye', 24.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roast-card">
+                <div class="roast-img-container">
+                    <span class="roast-level-tag">Espresso Roast</span>
+                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=500&auto=format&fit=crop" alt="Magma Espresso Blend">
+                </div>
+                <div class="roast-info">
+                    <span class="roast-origin">Blend ✦ Brazil & Ethiopia</span>
+                    <h3>Magma Espresso</h3>
+                    <p class="tasting-notes">Dark Chocolate, Toasted Hazelnut, Plum Jam</p>
+                    <div class="roast-footer">
+                        <span class="roast-price">$21.00</span>
+                        <button class="add-cart-mini" onclick="addToCart('Magma Espresso Blend', 21.00)">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spotlight">
+        <div class="container spotlight-grid">
+            <div class="spotlight-gallery">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop" alt="Panama Geisha Reserve" class="spotlight-main-img">
+                <div class="spotlight-sub-gallery">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=400&auto=format&fit=crop" alt="Boquete Highlands" class="spotlight-sub-img">
+                    <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=400&auto=format&fit=crop" alt="Anaerobic Lot" class="spotlight-sub-img">
+                </div>
+            </div>
+            <div class="spotlight-content">
+                <span class="badge-tag">Micro-Lot Spotlight</span>
+                <h2>Panama Geisha Esmeralda Private Collection</h2>
+                <p>An exceptionally rare high-altitude micro-lot characterized by delicate floral aromas and sparkling citrus acidity. Handpicked at sunrise and sun-dried on raised African beds.</p>
+                
+                <div class="spotlight-specs">
+                    <div class="spec-item">
+                        <h5>Origin</h5>
+                        <p>Boquete, Panama</p>
+                    </div>
+                    <div class="spec-item">
+                        <h5>Altitude</h5>
+                        <p>1,950m ASL</p>
+                    </div>
+                    <div class="spec-item">
+                        <h5>Process</h5>
+                        <p>Natural Anaerobic</p>
+                    </div>
+                    <div class="spec-item">
+                        <h5>Score</h5>
+                        <p>96.5 SCA</p>
+                    </div>
+                </div>
+
+                <div class="grind-selector">
+                    <label>Select Grind Type:</label>
+                    <div class="grind-options">
+                        <button class="grind-opt active">Whole Bean</button>
+                        <button class="grind-opt">Filter / Pour Over</button>
+                        <button class="grind-opt">Espresso</button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="addToCart('Panama Geisha Esmeralda', 45.00)">Add to Cart — $45.00</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="origins container" id="origins">
+        <div class="section-header">
+            <span class="badge-tag">Terroir Focus</span>
+            <h2>Global Origin Regions</h2>
+            <p>Direct relationships with generational farming families across the coffee belt.</p>
+        </div>
+
+        <div class="origin-grid">
+            <div class="origin-card">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600&auto=format&fit=crop" alt="Ethiopian Highlands">
+                <div class="origin-content">
+                    <h3>Ethiopia</h3>
+                    <p>Sidama & Yirgacheffe Highlands</p>
+                </div>
+            </div>
+            <div class="origin-card">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop" alt="Colombian Valleys">
+                <div class="origin-content">
+                    <h3>Colombia</h3>
+                    <p>Antioquia & Huila Valleys</p>
+                </div>
+            </div>
+            <div class="origin-card">
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&auto=format&fit=crop" alt="Kenya Slopes">
+                <div class="origin-content">
+                    <h3>Kenya</h3>
+                    <p>Nyeri Volcanic Slopes</p>
+                </div>
+            </div>
+            <div class="origin-card">
+                <img src="https://images.unsplash.com/photo-1511497584788-876761102251?q=80&w=600&auto=format&fit=crop" alt="Guatemala Jungles">
+                <div class="origin-content">
+                    <h3>Guatemala</h3>
+                    <p>Huehuetenango Highlands</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscriptions">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge-tag">Roaster's Club</span>
+                <h2>Never Run Out of Exceptional Coffee</h2>
+                <p>Freshly roasted micro-lots delivered straight from our Melbourne roastery to your doorstep on your schedule.</p>
+            </div>
+
+            <div class="sub-grid">
+                <div class="sub-card">
+                    <h3>Weekly Bag</h3>
+                    <p class="sub-desc">For the dedicated home barista who brews daily and demands peak freshness.</p>
+                    <div class="sub-price">$20 <span>/ week</span></div>
+                    <ul class="sub-features">
+                        <li>1x 250g seasonal single-origin bag</li>
+                        <li>Free express shipping</li>
+                        <li>Pause or cancel anytime</li>
+                        <li>Access to rare reserve lots</li>
+                    </ul>
+                    <a href="#shop" class="btn-secondary" style="color:var(--cream); border-color:var(--cream); text-align:center;">Select Weekly</a>
+                </div>
+
+                <div class="sub-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Bi-Weekly Bag</h3>
+                    <p class="sub-desc">Our flagship plan tailored for households enjoying two cups of specialty coffee per day.</p>
+                    <div class="sub-price">$22 <span>/ delivery</span></div>
+                    <ul class="sub-features">
+                        <li>1x 500g rotating single-origin bag</li>
+                        <li>Free express shipping</li>
+                        <li>Priority roaster allocation</li>
+                        <li>Complimentary tasting cards</li>
+                    </ul>
+                    <a href="#shop" class="btn-primary" style="text-align:center;">Select Bi-Weekly</a>
+                </div>
+
+                <div class="sub-card">
+                    <h3>Monthly Bag</h3>
+                    <p class="sub-desc">An indulgent monthly treat featuring large format packaging for steady coffee lovers.</p>
+                    <div class="sub-price">$38 <span>/ month</span></div>
+                    <ul class="sub-features">
+                        <li>1x 1kg bulk single-origin bag</li>
+                        <li>Free express shipping</li>
+                        <li>Custom grind profile options</li>
+                        <li>Exclusive member workshops</li>
+                    </ul>
+                    <a href="#shop" class="btn-secondary" style="color:var(--cream); border-color:var(--cream); text-align:center;">Select Monthly</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brew-guides container" id="guides">
+        <div class="section-header">
+            <span class="badge-tag">Master Your Brew</span>
+            <h2>Extraction Protocols</h2>
+            <p>Step-by-step masterclasses to unlock the optimal flavor profile from every bean.</p>
+        </div>
+
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab(event, 'pourover')">Pour Over (V60)</button>
+            <button class="tab-btn" onclick="switchTab(event, 'frenchpress')">French Press</button>
+            <button class="tab-btn" onclick="switchTab(event, 'espresso')">Espresso</button>
+        </div>
+
+        <div class="tab-content active" id="pourover">
+            <div class="brew-steps">
+                <div class="brew-step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>Weigh & Grind</h4>
+                        <p>Measure 15g of coffee ground to a medium-fine texture (resembling table salt).</p>
+                    </div>
+                </div>
+                <div class="brew-step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>The Bloom</h4>
+                        <p>Pour 45g of 93°C water over the grounds and let degas for 45 seconds.</p>
+                    </div>
+                </div>
+                <div class="brew-step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h4>Steady Pouring</h4>
+                        <p>Pour in concentric circles up to 250g total water weight. Total draw down in 3 mins.</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop" alt="Pour Over" class="brew-img">
+        </div>
+
+        <div class="tab-content" id="frenchpress">
+            <div class="brew-steps">
+                <div class="brew-step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>Coarse Grind</h4>
+                        <p>Use 30g of coarsely ground coffee for every 500g of hot water.</p>
+                    </div>
+                </div>
+                <div class="brew-step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>Steep 4 Minutes</h4>
+                        <p>Pour water, stir gently, and place the plunger on top without pressing down.</p>
+                    </div>
+                </div>
+                <div class="brew-step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h4>Press & Serve</h4>
+                        <p>Slowly push the plunger down and decant immediately to avoid over-extraction.</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop" alt="French Press" class="brew-img">
+        </div>
+
+        <div class="tab-content" id="espresso">
+            <div class="brew-steps">
+                <div class="brew-step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h4>Dose & Tamp</h4>
+                        <p>Dose 18g into the portafilter basket, distribute evenly, and tamp level with 15kg pressure.</p>
+                    </div>
+                </div>
+                <div class="brew-step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h4>Extraction</h4>
+                        <p>Pull shot at 9 bar pressure aiming for 36g out in 27 to 30 seconds.</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=600&auto=format&fit=crop" alt="Espresso Extraction" class="brew-img">
+        </div>
+    </section>
+
+    <section class="story" id="story">
+        <div class="container story-grid">
+            <div class="story-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop" alt="Melbourne Roastery" class="story-img">
+            </div>
+            <div class="story-content">
+                <span class="badge-tag">Rooted in Melbourne</span>
+                <h2>Forged by Passion for Exceptional Coffee</h2>
+                <p>Founded in 2016 in the vibrant laneways of Melbourne, Basalt Coffee Roasters was born out of an obsessive dedication to trace-origin transparency and artisanal roasting technique.</p>
+                <p>We work directly with smallholder farmers across the globe, ensuring equitable partnerships and sustainable agricultural practices while bringing world-class single-origin coffees to your cup.</p>
+
+                <div class="counters-grid">
+                    <div class="counter-item">
+                        <h3 class="counter" data-target="10">0</h3>
+                        <p>Years Roasting</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3 class="counter" data-target="24">0</h3>
+                        <p>Farm Partners</p>
+                    </div>
+                    <div class="counter-item">
+                        <h3 class="counter" data-target="150">0</h3>
+                        <p>Thousand Cups</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews container">
+        <div class="section-header">
+            <span class="badge-tag">Community Praise</span>
+            <h2>Loved by Coffee Enthusiasts</h2>
+            <p>Read what home brewers and specialty cafes have to say about our weekly roasts.</p>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The Yirgacheffe single-origin lot has completely redefined my morning routine. The floral notes and clean brightness are unmatched."</p>
+                </div>
+                <div class="reviewer-info">
+                    <h4>Liam O'Connor</h4>
+                    <p>Verified Subscriber, Fitzroy</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Fast shipping to Sydney and beans arrive mere days after being roasted in Melbourne. Incredible attention to detail!"</p>
+                </div>
+                <div class="reviewer-info">
+                    <h4>Sophie Vance</h4>
+                    <p>Home Barista, Bondi</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The Magma Espresso blend cuts through milk beautifully while retaining deep chocolate complexity. My absolute daily go-to."</p>
+                </div>
+                <div class="reviewer-info">
+                    <h4>Marcus Chen</h4>
+                    <p>Cafe Owner, Carlton</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gift-sets">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge-tag">Curated Bundles</span>
+                <h2>The Perfect Gift for Coffee Lovers</h2>
+                <p>Hand-packed gift boxes featuring our highest-rated single origins and brewing hardware.</p>
+            </div>
+
+            <div class="gift-grid">
+                <div class="gift-card">
+                    <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=500&auto=format&fit=crop" alt="Discovery Kit" class="gift-img">
+                    <div class="gift-info">
+                        <h3>Global Discovery Kit</h3>
+                        <p>Three 250g single-origin bags spanning Africa, Central America, and Indonesia.</p>
+                        <div class="gift-footer">
+                            <span class="roast-price" style="color:var(--accent);">$68.00</span>
+                            <button class="add-cart-mini" onclick="addToCart('Global Discovery Kit', 68.00)">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-card">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=500&auto=format&fit=crop" alt="Pour Over Set" class="gift-img">
+                    <div class="gift-info">
+                        <h3>V60 Pour Over Bundle</h3>
+                        <p>Hario V60 dripper, glass decanter, paper filters, and a bag of Yirgacheffe.</p>
+                        <div class="gift-footer">
+                            <span class="roast-price" style="color:var(--accent);">$85.00</span>
+                            <button class="add-cart-mini" onclick="addToCart('V60 Pour Over Bundle', 85.00)">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gift-card">
+                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=500&auto=format&fit=crop" alt="Reserve Crate" class="gift-img">
+                    <div class="gift-info">
+                        <h3>Reserve Wooden Crate</h3>
+                        <p>Limited edition micro-lot in a custom wooden box with tasting glasses.</p>
+                        <div class="gift-footer">
+                            <span class="roast-price" style="color:var(--accent);">$120.00</span>
+                            <button class="add-cart-mini" onclick="addToCart('Reserve Wooden Crate', 120.00)">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq container">
+        <div class="section-header">
+            <span class="badge-tag">Got Questions?</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about our beans, shipping, and subscriptions.</p>
+        </div>
+
+        <div class="faq-accordion">
+            <div class="faq-item">
+                <button class="faq-question">When are your coffee beans roasted and shipped? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>All our coffee is roasted fresh weekly from Monday to Wednesday. Orders placed before midday are dispatched the very same day via express courier across Australia.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I pause or cancel my subscription at any time? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>Yes, absolutely. You have total flexibility through your member portal to pause deliveries when you travel, change coffee profiles, or cancel at any time with no commitments.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Should I buy whole bean or ground coffee? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>We always recommend purchasing whole bean coffee and grinding just before brewing to preserve volatile aromatic compounds. However, we can custom grind to your preferred brewing method upon request.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do you ensure ethical sourcing practices? <span>+</span></button>
+                <div class="faq-answer">
+                    <p>We practice direct trade, paying well above Fair Trade baseline prices directly to farm owners and co-ops to support sustainable long-term agricultural investments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter container">
+        <div class="newsletter-box">
+            <span class="badge-tag">Join the Roastery</span>
+            <h2>Get 10% Off Your First Order</h2>
+            <p>Subscribe for early access to ultra-limited micro-lot releases and private tasting events.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" id="subscriberEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="newsletterModal">
+        <div class="modal-card">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <div class="modal-icon">✓</div>
+            <h3>Welcome to the Club!</h3>
+            <p>Thank you for subscribing. Your 10% discount code has been sent to your email. Get ready for exceptional coffee experiences.</p>
+            <button class="btn-primary" id="continueBtn" style="width: 100%;">Continue Browsing</button>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="color: var(--cream); display:inline-block; margin-bottom:1rem;">BASALT<span>.</span></a>
+                <p style="color:var(--border); font-size:0.95rem; max-width:300px; margin-bottom:1.5rem;">Melbourne single-origin micro-roastery dedicated to exceptional traceability and small-batch roasting mastery since 2016.</p>
+                <p style="color:var(--accent); font-weight:600; font-size:0.9rem;">42 Laneway Street, Collingwood VIC 3066</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop Roasts</a></li>
+                    <li><a href="#origins">Origin Regions</a></li>
+                    <li><a href="#guides">Brew Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Wholesale Enquiries</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Roastery Hours</h4>
+                <ul>
+                    <li style="color:var(--border);">Monday – Friday: 7am – 3pm</li>
+                    <li style="color:var(--border);">Saturday: 8am – 2pm</li>
+                    <li style="color:var(--border);">Sunday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Basalt Coffee Roasters. All rights reserved.</p>
+            <p>Crafted for specialty coffee lovers in Melbourne & beyond.</p>
+        </div>
+    </footer>
+
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3>Your Cart</h3>
+            <span class="close-drawer" id="closeCartBtn">&times;</span>
+        </div>
+        <div class="drawer-items" id="cartItemsContainer">
+            <p style="color:var(--text-muted); text-align:center; margin-top:2rem;">Your cart is currently empty.</p>
+        </div>
+        <div class="drawer-footer">
+            <div class="drawer-total">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <a href="#" class="checkout-btn" onclick="alert('Proceeding to secure checkout...');">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <script>
+        // Remove Preloader when fully loaded
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('loaded');
+            }, 400);
+        });
+
+        // Cart State
+        let cart = [];
+
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartCount = document.getElementById('cartCount');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+
+        openCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.add('open');
+            cartDrawer.classList.add('open');
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.remove('open');
+            cartDrawer.classList.remove('open');
+        });
+
+        cartOverlay.addEventListener('click', () => {
+            cartOverlay.classList.remove('open');
+            cartDrawer.classList.remove('open');
+        });
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            cartOverlay.classList.add('open');
+            cartDrawer.classList.add('open');
+        }
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:2rem;">Your cart is currently empty.</p>';
+            } else {
+                cartItemsContainer.innerHTML = '';
+                cart.forEach((item) => {
+                    totalCount += item.qty;
+                    totalPrice += item.price * item.qty;
+                    
+                    cartItemsContainer.innerHTML += `
+                        <div class="cart-item-row">
+                            <div class="cart-item-img" style="background:var(--espresso); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:bold; font-size:0.8rem;">BEAN</div>
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>Qty: ${item.qty}</p>
+                            </div>
+                            <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            cartCount.textContent = totalCount;
+            cartSubtotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        // Brew Guide Tabs
+        function switchTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Grind Selector Options
+        const grindOpts = document.querySelectorAll('.grind-opt');
+        grindOpts.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                grindOpts.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item.active');
+                if (currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                }
+                item.classList.toggle('active');
+            });
+        });
+
+        // Animated Counters
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const storySection = document.getElementById('story');
+            if(!storySection) return;
+            const sectionPos = storySection.getBoundingClientRect().top;
+            const screenHeight = window.innerHeight;
+
+            if (sectionPos < screenHeight && !animated) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 30;
+
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.textContent = Math.ceil(count) + (target === 150 ? 'k+' : '+');
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.textContent = target + (target === 150 ? 'k+' : '+');
+                        }
+                    };
+                    updateCount();
+                });
+                animated = true;
+            }
+        });
+
+        // Premium Newsletter Modal Logic
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterModal = document.getElementById('newsletterModal');
+        const closeModal = document.getElementById('closeModal');
+        const continueBtn = document.getElementById('continueBtn');
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('subscriberEmail');
+            if(emailInput.value.trim() !== '') {
+                newsletterModal.classList.add('open');
+                emailInput.value = '';
+            }
+        });
+
+        closeModal.addEventListener('click', () => {
+            newsletterModal.classList.remove('open');
+        });
+
+        continueBtn.addEventListener('click', () => {
+            newsletterModal.classList.remove('open');
+        });
+
+        newsletterModal.addEventListener('click', (e) => {
+            if (e.target === newsletterModal) {
+                newsletterModal.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
